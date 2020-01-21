@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<link rel="icon" href="images/icon.png">
+	<title>
+		Rock Paper Scissors
+	</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+	<div id="main">
+		<div id="data"></div>
+		<div id="playerPoints">3</div>
+		<div id="computerPoints">3</div>
+		<div id="drawText"></div>
+		
+		<button id="game" onclick="play()" disabled="true">Play</button>
+		
+		<img id="deck">
+
+		<img class="1" id="rockAI" src="images/facedown.png">
+		<img class="2" id="paperAI" src="images/facedown.png">
+		<img class="3" id="scissorsAI" src="images/facedown.png">
+
+		<hr id="midline" />
+		
+		<img class='player' id="rock" src="images/rock.png" data-position="first">
+		<img class='player' id="paper" src="images/paper.png" data-position="second">
+		<img class='player' id="scissors" src="images/scissors.png" data-position="third">
+	</div>
+	
+	<script src="jquery-2.2.4.min.js"></script>
+	<script src="script.js"></script>
+
+</body>
+
+</html>

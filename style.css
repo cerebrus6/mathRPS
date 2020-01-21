@@ -59,13 +59,13 @@ height: 15.3%;
 transition: all 1s ease;
 z-index: 1;
 background: url("images/deck.png") no-repeat;
-background-size: 100%;
+background-size: 100% 99%;
 transition: background .3s linear;
 }
 
 #deck:hover {
 background: url("images/draw.png") no-repeat;
-background-size: 100%;
+background-size: 100% 99%;
 transition: background .3s linear;
 }
 
@@ -123,17 +123,34 @@ font-size: 100%;
 	left: 10%;
 	top: 13%;
 }
-
 #data {
+	opacity: 0.9;
 	position: absolute;
-	top: 60%;
-	left: 88%;
+	top: 35%;
+	left: 73.25%;
 	width: 7.3%;
 	height: 30.6%;
 	background-color: white;
 	border: 4px double black;
 	text-align: center;
 	line-height: 2.5em;
+	z-index: 2;
+}
+
+#dataDeck {
+	z-index: 11;
+	position: absolute;
+	top: 51.8%;
+	left: 8.7%;
+	width: 20.5%;
+	padding-top: .5em; 
+	height: 12%;
+	background-color: white;
+	opacity: 0.9;
+	border: 4px double black;
+	text-align: center;
+	line-height: 1.5em;
+	z-index: 2;
 }
 
 #announcement {
@@ -153,4 +170,12 @@ font-size: 100%;
 	position: absolute;
 	left: 39.5%;
 	display: inline-block;
+}
+
+.tooltip {
+	visibility: hidden;
+}
+
+.tooltip:hover {
+	visibility: visible;	
 }

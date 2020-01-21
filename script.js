@@ -1,13 +1,4 @@
 //Instructions.
-window.alert("	Instructions:\n\
-				1. Goal is to 0 the enemy score.\n\
-				2. First play a card.\n\
-				3. Draw a card after playing.\n\
-				4. All the cards in the board are found in Data.\n\
-				5. Win = -1 to Enemy Points. \n\
-				6. Lose = -1 to Player Points. \n\
-				7. Tie = +1 to Both Points. \n\
-				8. Have fun using math to win.");
 
 var check = 1;
 var check2 = 1;
@@ -65,7 +56,7 @@ function moveAI(c) {
 //Draw AI Card.
 function drawAI() {
 	if (check4==1) {
-		var drawAI = Math.ceil(Math.random()*handArr.length-1);
+		var drawAI = Math.floor(Math.random()*handArr.length);
 		var positiony = "AI' style='top: 43.5%; left: 5%;' data-position='".concat(choice,"' />");	
 		var addStringAI = "<img class='AI' src='images/facedown.png'".concat(" id='", handArr[drawAI], positiony);
 		$("#main").append(addStringAI);
@@ -82,6 +73,10 @@ function drawAI() {
 				}
 			});
 		check4*=-1;
+		var box = handArr[drawAI];
+		handArr[drawAI]=handArr[handArr.length-1];
+		handArr[handArr.length-1]=box;
+		var remove = handArr.pop();
 	}
 }
 
@@ -105,7 +100,7 @@ function hide() {
 var rock = 0;
 var paper = 0;
 var scissors = 0;
-var handArr = ["rock", "paper", "scissors", "rock", "paper", "scissors", "rock", "paper", "scissors"];
+var handArr = ["rock", "paper", "scissors", "rock", "paper", "scissors", "rock", "paper", "scissors", "rock", "paper", "scissors"];
 
 //For future implementation of a limited deck.
 function count() {
@@ -122,14 +117,54 @@ var i;
 			scissors++;
 		}
 	}
+	var text = "Data:<hr />".concat("Rock: ", rock, "| Paper: ", paper, "| Scissors: ", scissors);
+	$("#dataDeck").html(text);
 }
 
+$("#dataDeck").hide();
+
+$("#deck").on("mouseover", function() {
+	$("#dataDeck").show();
+});
+
+$("#deck").on("mouseleave", function() {
+	$("#dataDeck").hide();
+});
+
+$("#dataDeck").on("mouseover", function() {
+	$("#dataDeck").show();
+});
+
+$("#dataDeck").on("mouseleave", function() {
+	$("#dataDeck").hide();
+});
+
+function checkWIn() {
+	if(handArr.length==0) {
+		if(scoreAI>scorePlayer) {
+			console.log("Lose");
+		} else if(scoreAI<scorePlayer) {
+			console.log("Win");
+		} else if(scoreAI==scorePlayer) {
+			console.log("Tie");
+		}
+	}
+}
+
+var box;
 //Draw player card.
 function drawCard() {
 	NumOfCards++;
-	var draw = Math.ceil(Math.random()*handArr.length-1);	
+	var draw = Math.floor(Math.random()*handArr.length);
+	console.log(draw);
+	var arr = handArr.toString()
+	console.log(arr);
+	box = handArr[handArr.length-1];
+	var pick = handArr.pop();
+	console.log(pick);
+	checkWIn();
 	var positionx = " style='top: 43.5%; left: 5%;' data-position='".concat(position,"' />");
-	var addString = "<img class='player1' id='".concat(handArr[draw],"' src='images/", handArr[draw], ".png'", positionx);
+	var addString = "<img class='player1' id='".concat(pick,"' src='images/", pick, ".png'", positionx);
 	$("#main").prepend(addString);
 		$("#deck").on("mouseup", function() {
 			if(position=="first") {
@@ -254,7 +289,7 @@ function newGame() {
 }
 
 //Remove the cards on play.
-var zIndex=0;
+var zIndex=1;
 	$("#deck").on("mouseover", function() {
 		if(check == 0) {
 			drawAI();
@@ -267,7 +302,15 @@ var zIndex=0;
 			$(".chosenAI").attr("class", "none2");
 			check2 = 1;
 			check = 1;
-			zIndex++;
 			drawCard();
 		}
 	});
+
+	//Rush game mode
+var enableRush = false;
+	if(enableRush==true) {
+		$("#rush").css({"color":"white"});
+	} else {
+		$("#rush").css({"color":"grey"});
+	}
+	
